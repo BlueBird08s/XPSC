@@ -5,12 +5,29 @@ ios::sync_with_stdio(false);
 cin.tie(nullptr);
     int n;
     cin>>n;
-    vector<int> contest(n);
+    multiset<int> ml;
 
     for(int i =1; i<=n; i++)
     {
-        cin>>contest[i]<<" ";
+        int x;
+        cin>>x;
+        ml.insert(x);
     }
 
+    int ans =0, problems =1;
+    while(!ml.empty()){
+        auto lb = ml.lower_bound(problems);
+        if(lb!=ml.end())
+        {
+            ans++;
+            ml.erase(lb);
+        }
+        else{
+            break;
+        }
+        problems++;
+    }
+
+    cout<<ans<<endl;
    return 0;
 }
